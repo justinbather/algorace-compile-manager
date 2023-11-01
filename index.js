@@ -13,10 +13,14 @@ app.use(cors());
 
 app.post("/test", async (req, res) => {
   console.log("recieved post");
+  //fetch the problemcode with id from client
+  // client gives userCode and rest of info
+
+  console.log(req.body);
   try {
     const response = await axios.post("http://localhost:5050/compile-test", {
       code: req.body.code,
-      lang: req.body.lang,
+      problem: req.body.problem,
     });
     if (response.status === 200) {
       console.log(response.data);
