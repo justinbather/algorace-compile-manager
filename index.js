@@ -23,12 +23,29 @@ app.post("/test", async (req, res) => {
       problem: req.body.problem,
     });
     if (response.status === 200) {
-      console.log(response.data);
-      console.log("got response");
-      return res.status(200).json({
-        message: "successful compilation",
-        worker_response: response.data,
-      });
+      switch (response.data.success) {
+        case true: {
+          return res
+            .status(200)
+            .json({ success: true, output: response.data.output });
+        }
+        case false: {
+          return res
+            .status(200)
+            .json({ success: false, output: response.data.output });
+        }
+        default: {
+          return res
+            .status(500)
+            .json({ message: "Error compiling", success: false });
+        }
+      }
+      // console.log(response.data);
+      // console.log("got response");
+      // return res.status(200).json({
+      //   message: "successful compilation",
+      //   worker_response: response.data,
+      // });
     }
   } catch (err) {
     return res
