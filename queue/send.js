@@ -1,13 +1,15 @@
 const amqp = require("amqplib/callback_api");
 
-const addTask = (data) => {
+const addTask = (data, success) => {
   amqp.connect("amqp://127.0.0.1", function (error, connection) {
     if (error) {
+      success(false, error);
       throw error;
     }
 
     connection.createChannel(function (error, channel) {
       if (error) {
+        success(false, error);
         throw error;
       }
 
@@ -19,7 +21,8 @@ const addTask = (data) => {
       });
 
       channel.sendToQueue(queue, Buffer.from(msg));
-      console.log(" Message sent: ", msg);
+      success(true, data.jobId);
+      // console.log(" Message sent: ", msg);
     });
   });
 };
