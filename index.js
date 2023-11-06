@@ -2,6 +2,7 @@ const express = require("express");
 const axios = require("axios");
 const cors = require("cors");
 const connectDB = require("./config/db");
+const addTask = require("./queue/send");
 
 connectDB();
 
@@ -15,6 +16,11 @@ app.post("/test", async (req, res) => {
   console.log("recieved post");
   //fetch the problemcode with id from client
   // client gives userCode and rest of info
+  const data = JSON.stringify({
+    code: req.body.code,
+    problem: req.body.problem,
+  });
+  const task = addTask(data);
 
   console.log(req.body);
   try {
