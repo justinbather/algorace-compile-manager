@@ -15,13 +15,13 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(cors({ origin: 'https://algorace-frontend.vercel.app', credentials: true }));
 
-app.post("/compile", verifyUser, async (req, res) => {
+app.post("/compile", async (req, res) => {
   console.log("recieved post");
   //fetch the problemcode with id from client
   // client gives userCode and rest of info
 
   const compileJob = await CompileJob.create({
-    user: req.user,
+    //user: req.user,
     status: "pending",
     code: req.body.code,
     problem: req.body.problem,
