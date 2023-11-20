@@ -51,6 +51,7 @@ app.patch("/compile", async (req, res) => {
       req.body.update
     );
     console.log("Getting update from worker service");
+    console.log(updatedJob)
   } catch (err) {
     console.log("error updating compile job from remote compiler", err);
   }
