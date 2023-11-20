@@ -4,6 +4,7 @@ const CompileJobSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
+    default: () => ({})
   },
   status: {
     type: String,
