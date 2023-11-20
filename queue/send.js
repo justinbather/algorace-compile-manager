@@ -1,7 +1,7 @@
 const amqp = require("amqplib/callback_api");
 require('dotenv').config()
 
-const url = process.env.AMQP_URL || 'amqp://127.0.0.1'
+const url = process.env.CLOUDAMQP_URL || 'amqp://127.0.0.1'
 
 const addTask = (data, success) => {
   amqp.connect(url, function(error, connection) {
