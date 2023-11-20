@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
 
 const CompileJobSchema = new mongoose.Schema({
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-    default: () => ({})
-  },
+  //  user: {
+  //    type: mongoose.Schema.Types.ObjectId,
+  //    ref: "User",
+  //    default: () => ({})
+  //  },
   status: {
     type: String,
     enum: ["pending", "completed", "failed"],
