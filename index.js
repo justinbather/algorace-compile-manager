@@ -9,7 +9,7 @@ const CompileJob = require("./schemas/CompileJobSchema");
 connectDB();
 
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 7070;
 
 app.use(cookieParser());
 app.use(express.json());
@@ -34,7 +34,7 @@ app.post("/compile", verifyUser, async (req, res) => {
     problem: req.body.problem,
   });
 
-  addTask(data, function (success, data) {
+  addTask(data, function(success, data) {
     if (!success) {
       return res.status(500).json({ success: false, error: data });
     } else {
