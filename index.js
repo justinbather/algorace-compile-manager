@@ -16,7 +16,7 @@ console.log([CLIENT_URL, WORKER_URL])
 
 app.use(cookieParser());
 app.use(express.json());
-app.use(cors({ origin: [CLIENT_URL, WORKER_URL], credentials: true }));
+app.use(cors({ origin: true, credentials: true }));
 
 app.post("/compile", async (req, res) => {
   console.log("recieved post");
