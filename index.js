@@ -10,10 +10,12 @@ connectDB();
 
 const app = express();
 const PORT = process.env.PORT || 7070;
+const CLIENT_URL = process.env.CLIENT_URL || 'localhost:3000'
+const WORKER_URL = process.env.WORKER_URL || 'localhost:5050'
 
 app.use(cookieParser());
 app.use(express.json());
-app.use(cors({ origin: true, credentials: true }));
+app.use(cors({ origin: [CLIENT_URL, WORKER_URL], credentials: true }));
 
 app.post("/compile", async (req, res) => {
   console.log("recieved post");
