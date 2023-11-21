@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 7070;
 
 app.use(cookieParser());
 app.use(express.json());
-app.use(cors({ origin: true, credentials: true }));
+app.use(cors({ origin: 'https://algorace-frontend.vercel.app', credentials: true }));
 
 app.post("/compile", async (req, res) => {
   console.log("recieved post");
