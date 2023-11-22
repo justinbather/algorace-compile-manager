@@ -14,17 +14,17 @@ and output of the code sent.
 
 ## Endpoints
 
-#### Compile code
+### Compile code
 ```http
 POST /compile
 ```
 Example request:
 ```json
 {
-  "code": "console.log("hello world")",
+  "code": "console.log('hello world')",
   "problem": "ObjectId(12234567)"
 }
-}
+
 ```
 
 Example response:
@@ -42,3 +42,23 @@ Example response:
 ```http
 GET /job-status/:jobId
 ```
+
+Example request:
+```http
+GET /job-status/123445567
+```
+
+Example response:
+
+```http
+200 OK
+```
+```json
+{
+  "jobId": "123445567",
+  "status": "success",
+  "output": "hello world",
+  "success": "true"
+}
+```
+
