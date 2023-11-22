@@ -5,6 +5,8 @@ const addTask = require("./queue/send");
 const cookieParser = require("cookie-parser");
 const CompileJob = require("./schemas/CompileJobSchema");
 const { PORT } = require('./config/constants')
+
+//Connects to MongoDB
 connectDB();
 
 const app = express();
@@ -13,9 +15,9 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(cors({ origin: true, credentials: true }));
 
+
+// @description: Handles creation of CompileJob, adds to task queue and returns the jobId to client
 app.post("/compile", async (req, res) => {
-  //fetch the problemcode with id from client
-  // client gives userCode and rest of info
 
   const compileJob = await CompileJob.create({
     status: "pending",
@@ -39,6 +41,8 @@ app.post("/compile", async (req, res) => {
   });
 });
 
+
+//@description: Updates compileJob upon completion by worker
 app.patch("/compile", async (req, res) => {
   try {
     const updatedJob = await CompileJob.findByIdAndUpdate(
@@ -51,6 +55,8 @@ app.patch("/compile", async (req, res) => {
   }
 });
 
+
+// @description: Provides status and output for given CompileJob
 app.get("/job-status/:jobId", async (req, res) => {
   const { jobId } = req.params;
   try {
