@@ -38,7 +38,7 @@ Example response:
 }
 ```
 
-#### Get compilation update
+### Get compilation update
 ```http
 GET /job-status/:jobId
 ```
