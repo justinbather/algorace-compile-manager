@@ -2,7 +2,6 @@ const express = require("express");
 const cors = require("cors");
 const connectDB = require("./config/db");
 const cookieParser = require("cookie-parser");
-const CompileJob = require("./schemas/CompileJobSchema");
 
 //Route imports
 const compile = require('./routes/compile')
@@ -24,6 +23,5 @@ app.use(cors({ origin: true, credentials: true }));
 app.use('/compile', compile)
 // @description: Provides status and output for given CompileJob
 app.use("/job-status", job)
-
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}!`));
