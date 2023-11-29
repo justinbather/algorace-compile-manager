@@ -46,6 +46,21 @@ class Problem {
     }
   }
 
+  createMockProblem() {
+    const mockProblem = {
+      title: 'Common Prefix',
+      language: 'javascript',
+      userStarterCode: '',
+      filePrefix: "commonPrefix",
+      fileExt: ".mjs",
+      inputCode: "",
+      callerCode: "",
+      output: ''
+    }
+
+
+  }
+
   addToQueue(problemCode, compileJob) {
     //the queue needs to be given data in string format to be sent as a buffer
     const data = JSON.stringify({
@@ -63,6 +78,7 @@ class Problem {
       }
     });
   }
+
   async createCompileJob(code, problem) {
     try {
 
@@ -79,12 +95,41 @@ class Problem {
         console.log('compile job: ', compileJob)
         return compileJob
       }
-
     } catch (err) {
 
       throw new Error(`error creating compile job: ${err}`)
     }
   }
+}
+
+
+const commonPrefixTestData = {
+  correctSolution: `var longestCommonPrefix = function(strs) {
+    let output = "";
+
+    for (let i = 0; i < strs[0].length; i++) {
+       if (strs.every((str => str[i] === strs[0][i]))) {
+           output += strs[0][i];
+       } else {
+           break
+       }
+    }
+
+    return output;
+};`,
+  incorrectSolution: `var longestCommonPrefix = function(strs) {
+    let output = "";
+
+    for (let i = 0; i < strs[0].length; i++) {
+       if (strs.every((str => str[i] === strs[0][i]))) {
+           output += strs[0][1];
+       } else {
+           break
+       }
+    }
+
+    return output;
+};`
 }
 
 const twoSumTestData = {
@@ -114,4 +159,4 @@ let mp = new Map()
      mp.set(nums[i+ 1], i)
 }`
 }
-module.exports = { Problem, twoSumTestData }
+module.exports = { Problem, twoSumTestData, commonPrefixTestData }

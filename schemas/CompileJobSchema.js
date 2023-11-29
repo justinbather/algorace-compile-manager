@@ -20,7 +20,7 @@ const CompileJobSchema = new mongoose.Schema({
   output: {
     type: String,
     default: "",
-  },
+  }
 });
 
 const CompileJob = mongoose.model("Compile Job", CompileJobSchema);
